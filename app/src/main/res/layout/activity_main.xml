@@ -18,7 +18,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:textSize="24sp"
-        android:textStyle="normal|bold"
         android:textAlignment="center" />
 
     <Button
