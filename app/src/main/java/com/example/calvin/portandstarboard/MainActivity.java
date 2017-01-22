@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "myApp";
+    private Game PortStarboardGame = new Game();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +33,35 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Port(right) is Green", Toast.LENGTH_SHORT).show();
                 Log.i(TAG, "Port(right) is Green");
+            }
+        });
+
+        Button leftAnswer = (Button) findViewById(R.id.leftAnsBtn);
+        //user clicks one to indicate the game's currently chosen side
+        leftAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //if user is correct
+                    //make a Toast message "Correct!"
+                    //Log message "User guess of Port was Correct!"
+                //else
+                    //display Toast message "Incorrect! :("
+                    //Log message "User guess of Port was Incorrect!"
+                //set random
+            }
+        });
+
+        Button rightAnswer = (Button) findViewById(R.id.rightAnsBtn);
+        rightAnswer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //if user is correct
+                    //make a Toast message "Correct!"
+                    //Log message "User guess of Starboard was Correct!"
+                //else
+                    //display Toast message "Incorrect! :("
+                    //Log message "User guess of Starboard was Incorrect!"
+                //set random
             }
         });
     }}
