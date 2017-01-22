@@ -9,10 +9,11 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "myApp";
-    private Game PortStarboardGame = new Game();
+    private Game PortStarboardGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        PortStarboardGame = new Game();
         setContentView(R.layout.activity_main);
         //wire up left button to log and make toast
         //...get the button
@@ -31,8 +32,8 @@ public class MainActivity extends AppCompatActivity {
         rightbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Port(right) is Green", Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "Port(right) is Green");
+                Toast.makeText(getApplicationContext(), "Starboard(right) is Green", Toast.LENGTH_SHORT).show();
+                Log.i(TAG, "Starboard(right) is Green");
             }
         });
 
@@ -42,12 +43,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //if user is correct
+                if (PortStarboardGame.checkIfCorrect(Game.Side.PORT)){
                     //make a Toast message "Correct!"
+                    Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
                     //Log message "User guess of Port was Correct!"
-                //else
+                    Log.i(TAG, "User guess of Port was correct!");
+                }else{
                     //display Toast message "Incorrect! :("
+                    Toast.makeText(getApplicationContext(), "Incorrect! :(", Toast.LENGTH_SHORT).show();
+                    //Log message "User guess of Port was Correct!"
+                    Log.i(TAG, "User guess of Port was incorrect!");
                     //Log message "User guess of Port was Incorrect!"
+                }
                 //set random
+                PortStarboardGame = new Game();
             }
         });
 
@@ -56,12 +65,20 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //if user is correct
+                if (PortStarboardGame.checkIfCorrect(Game.Side.PORT)){
                     //make a Toast message "Correct!"
-                    //Log message "User guess of Starboard was Correct!"
-                //else
+                    Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
+                    //Log message "User guess of Port was Correct!"
+                    Log.i(TAG, "User guess of Starboard was correct!");
+                }else{
                     //display Toast message "Incorrect! :("
-                    //Log message "User guess of Starboard was Incorrect!"
+                    Toast.makeText(getApplicationContext(), "Incorrect! :(", Toast.LENGTH_SHORT).show();
+                    //Log message "User guess of Port was Correct!"
+                    Log.i(TAG, "User guess of Starboard was incorrect!");
+                    //Log message "User guess of Port was Incorrect!"
+                }
                 //set random
+                PortStarboardGame = new Game();
             }
         });
     }}
