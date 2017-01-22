@@ -7,4 +7,5 @@
     <string name="means_right">MEANS RIGHT</string>
     <string name="means_left">MEANS LEFT</string>
     <string name="port">Port</string>
+    <string name="starboard">Starboard</string>
 </resources>
