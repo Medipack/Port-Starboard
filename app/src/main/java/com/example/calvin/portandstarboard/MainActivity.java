@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         PortStarboardGame = new Game();
         setContentView(R.layout.activity_main);
+        final TextView quizQuest = (TextView) findViewById(R.id.questionCont);
+        quizQuest.setText(PortStarboardGame.getChosenSideName());
         //wire up left button to log and make toast
         //...get the button
         Button leftbtn = (Button) findViewById(R.id.leftNameBtn);
@@ -44,19 +47,20 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //if user is correct
                 if (PortStarboardGame.checkIfCorrect(Game.Side.PORT)){
-                    //make a Toast message "Correct!"
-                    Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
-                    //Log message "User guess of Port was Correct!"
+                    //make a Toast message
+                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
+                    //Log message
                     Log.i(TAG, "User guess of Port was correct!");
                 }else{
-                    //display Toast message "Incorrect! :("
+                    //display Toast message
                     Toast.makeText(getApplicationContext(), "Incorrect! :(", Toast.LENGTH_SHORT).show();
-                    //Log message "User guess of Port was Correct!"
+                    //Log message
                     Log.i(TAG, "User guess of Port was incorrect!");
-                    //Log message "User guess of Port was Incorrect!"
+                    //Log message
                 }
-                //set random
+                //set up a new game
                 PortStarboardGame = new Game();
+                quizQuest.setText(PortStarboardGame.getChosenSideName());
             }
         });
 
@@ -65,20 +69,21 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //if user is correct
-                if (PortStarboardGame.checkIfCorrect(Game.Side.PORT)){
-                    //make a Toast message "Correct!"
+                if (PortStarboardGame.checkIfCorrect(Game.Side.STARBOARD)){
+                    //make a Toast message
                     Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
-                    //Log message "User guess of Port was Correct!"
+                    //Log message
                     Log.i(TAG, "User guess of Starboard was correct!");
                 }else{
-                    //display Toast message "Incorrect! :("
+                    //display Toast message
                     Toast.makeText(getApplicationContext(), "Incorrect! :(", Toast.LENGTH_SHORT).show();
-                    //Log message "User guess of Port was Correct!"
+                    //Log message
                     Log.i(TAG, "User guess of Starboard was incorrect!");
-                    //Log message "User guess of Port was Incorrect!"
+                    //Log message
                 }
-                //set random
+                //set up a new game
                 PortStarboardGame = new Game();
+                quizQuest.setText(PortStarboardGame.getChosenSideName());
             }
         });
     }}
