@@ -70,6 +70,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/questionCont"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:text="@string/port_or_starboard" />
 
 </RelativeLayout>

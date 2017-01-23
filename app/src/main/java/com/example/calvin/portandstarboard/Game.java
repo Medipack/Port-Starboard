@@ -1,5 +1,7 @@
 package com.example.calvin.portandstarboard;
-
+//Java class code provided by Brian Fraser
+//domain replaced for use with app
+//package com.example.brianfraser.testassignment1;
         import java.util.Arrays;
         import java.util.Collections;
 

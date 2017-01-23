@@ -8,16 +8,37 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "myApp";
     private Game PortStarboardGame;
+
+    //FUNCTIONS
+    //Picks a side to be displayed in textView
+    private void pickASide(TextView question, Game game){
+        //takes chosen side and inserts the string into argument for port_or_starboard
+        String chosenSide = String.format(getResources().getString(R.string.port_or_starboard), game.getChosenSideName());
+        //sets the text
+        question.setText(chosenSide);
+    }
+
+    public void toastLog(int msg1, int msg2){
+        Toast.makeText(getApplicationContext(), msg1, Toast.LENGTH_SHORT).show();
+        Log.i(TAG, getString(msg2));
+    }
+
+    public void toastLog(int msg1){
+        toastLog(msg1, msg1);
+    }
+//---------------------------------
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PortStarboardGame = new Game();
         setContentView(R.layout.activity_main);
         final TextView quizQuest = (TextView) findViewById(R.id.questionCont);
-        quizQuest.setText(PortStarboardGame.getChosenSideName());
+        //pick a side to start
+        pickASide(quizQuest, PortStarboardGame);
         //wire up left button to log and make toast
         //...get the button
         Button leftbtn = (Button) findViewById(R.id.leftNameBtn);
@@ -25,8 +46,7 @@ public class MainActivity extends AppCompatActivity {
         leftbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Port(left) is Red", Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "Port(left) is Red");
+                toastLog(R.string.showPort);
             }
         });
 
@@ -35,55 +55,49 @@ public class MainActivity extends AppCompatActivity {
         rightbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Starboard(right) is Green", Toast.LENGTH_SHORT).show();
-                Log.i(TAG, "Starboard(right) is Green");
+                toastLog(R.string.showStarboard);
             }
         });
 
+        //Port button
         Button leftAnswer = (Button) findViewById(R.id.leftAnsBtn);
         //user clicks one to indicate the game's currently chosen side
         leftAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if user is correct
+                //checks if the side is PORT
                 if (PortStarboardGame.checkIfCorrect(Game.Side.PORT)){
-                    //make a Toast message
-                    Toast.makeText(getApplicationContext(), "Correct!", Toast.LENGTH_SHORT).show();
-                    //Log message
-                    Log.i(TAG, "User guess of Port was correct!");
+                    //if yes..
+                    //print Toast and log correct answer
+                    toastLog(R.string.correct, R.string.logPortCorrect);
                 }else{
-                    //display Toast message
-                    Toast.makeText(getApplicationContext(), "Incorrect! :(", Toast.LENGTH_SHORT).show();
-                    //Log message
-                    Log.i(TAG, "User guess of Port was incorrect!");
-                    //Log message
+                    //if not...
+                    //print Toast and log that the user guessed wrong
+                    toastLog(R.string.incorrect, R.string.logSBIncorrect);
                 }
                 //set up a new game
                 PortStarboardGame = new Game();
-                quizQuest.setText(PortStarboardGame.getChosenSideName());
+                pickASide(quizQuest, PortStarboardGame);
             }
         });
 
+        //Starboard button
         Button rightAnswer = (Button) findViewById(R.id.rightAnsBtn);
         rightAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //if user is correct
+                //if Side is Starboard,
                 if (PortStarboardGame.checkIfCorrect(Game.Side.STARBOARD)){
-                    //make a Toast message
-                    Toast.makeText(getApplicationContext(), "Correct", Toast.LENGTH_SHORT).show();
-                    //Log message
-                    Log.i(TAG, "User guess of Starboard was correct!");
+                    //Toast and log correct
+                    toastLog(R.string.correct, R.string.logSBCorrect);
+                //else if side isn't Starboard
                 }else{
-                    //display Toast message
-                    Toast.makeText(getApplicationContext(), "Incorrect! :(", Toast.LENGTH_SHORT).show();
-                    //Log message
-                    Log.i(TAG, "User guess of Starboard was incorrect!");
-                    //Log message
+                    //Toast and log that it's incorrect
+                    toastLog(R.string.incorrect, R.string.logPortIncorrect);
                 }
                 //set up a new game
                 PortStarboardGame = new Game();
-                quizQuest.setText(PortStarboardGame.getChosenSideName());
+                pickASide(quizQuest, PortStarboardGame);
             }
         });
     }}
