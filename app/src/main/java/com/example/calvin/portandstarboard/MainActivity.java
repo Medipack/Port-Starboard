@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
-    private static final String TAG = "myApp";
+    private static final String TAG = "PortSBReport";
     private Game PortStarboardGame;
 
     //FUNCTIONS
@@ -22,13 +22,14 @@ public class MainActivity extends AppCompatActivity {
         question.setText(chosenSide);
     }
 
-    public void toastLog(int msg1, int msg2){
+    public void toastLog(int msg1, int msg2, String side){
         Toast.makeText(getApplicationContext(), msg1, Toast.LENGTH_SHORT).show();
-        Log.i(TAG, getString(msg2));
+        String logText = String.format(getResources().getString(msg2), side);
+        Log.i(TAG, logText);
     }
 
     public void toastLog(int msg1){
-        toastLog(msg1, msg1);
+        toastLog(msg1, msg1, "");
     }
 //---------------------------------
     @Override
@@ -63,17 +64,18 @@ public class MainActivity extends AppCompatActivity {
         Button leftAnswer = (Button) findViewById(R.id.leftAnsBtn);
         //user clicks one to indicate the game's currently chosen side
         leftAnswer.setOnClickListener(new View.OnClickListener() {
+            String gameSide = PortStarboardGame.getChosenSideName();
             @Override
             public void onClick(View v) {
                 //checks if the side is PORT
                 if (PortStarboardGame.checkIfCorrect(Game.Side.PORT)){
                     //if yes..
                     //print Toast and log correct answer
-                    toastLog(R.string.correct, R.string.logPortCorrect);
+                    toastLog(R.string.correct, R.string.logCorrect, gameSide);
                 }else{
                     //if not...
                     //print Toast and log that the user guessed wrong
-                    toastLog(R.string.incorrect, R.string.logSBIncorrect);
+                    toastLog(R.string.incorrect, R.string.logIncorrect, gameSide);
                 }
                 //set up a new game
                 PortStarboardGame = new Game();
@@ -84,16 +86,17 @@ public class MainActivity extends AppCompatActivity {
         //Starboard button
         Button rightAnswer = (Button) findViewById(R.id.rightAnsBtn);
         rightAnswer.setOnClickListener(new View.OnClickListener() {
+            String gameSide = PortStarboardGame.getChosenSideName();
             @Override
             public void onClick(View v) {
                 //if Side is Starboard,
                 if (PortStarboardGame.checkIfCorrect(Game.Side.STARBOARD)){
                     //Toast and log correct
-                    toastLog(R.string.correct, R.string.logSBCorrect);
+                    toastLog(R.string.correct, R.string.logCorrect, gameSide);
                 //else if side isn't Starboard
                 }else{
                     //Toast and log that it's incorrect
-                    toastLog(R.string.incorrect, R.string.logPortIncorrect);
+                    toastLog(R.string.incorrect, R.string.logIncorrect, gameSide);
                 }
                 //set up a new game
                 PortStarboardGame = new Game();

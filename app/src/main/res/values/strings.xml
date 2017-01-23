@@ -11,10 +11,8 @@
     <string name="starboard">Starboard</string>
     <string name="correct">Correct!</string>
     <string name="incorrect">Incorrect! :(</string>
-    <string name="logPortCorrect">User guess of Port was correct!</string>
-    <string name="logPortIncorrect">User guess of Port was incorrect!</string>
-    <string name="logSBCorrect">User guess of Starboard was correct!</string>
-    <string name="logSBIncorrect">User guess of Starboard was incorrect!</string>
+    <string name="logIncorrect">User guess of %1$s was incorrect!</string>
+    <string name="logCorrect">User guess of %1$s was correct!</string>
     <string name="showPort">Port(left) is Red</string>
     <string name="showStarboard">Starboard(right) is Green</string>
 </resources>
